@@ -13,4 +13,3 @@ build/%.o: src/%.c
 
 clean:
 	rm build/*.o
-	rm bin/*.exe
