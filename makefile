@@ -1,16 +1,16 @@
+.PHONY: clean
 CC = gcc
-CFLAGS = -c –Wall -Werror 
+CFLAGS = -Werror 
 EXECUTABLE = main
-SOURCES = src/main.c src/after_rbracket.c src/circle_area.c src/circle_perimetr.c src/comma_find.c src/complete_circle_check.c src/complete_triangle_check.c src/coords_record.c src/lbracket.c src/shapecheck.c src/triangle_area.c src/triangle_perimetr.c src/rbracket.c src/radius_record.c
-OBJECTS=$(SOURCES: .c=.o)
-
-all:	$(SOURCES) $(EXECUTABLE)
+SOURCES = $(wildcard src/*.c)
+OBJECTS=$(patsubst src/%.c, build/%.o, $(SOURCES))
 
 $(EXECUTABLE) : $(OBJECTS)
 	$(CC)  $(OBJECTS) -o bin/$@ -lm
 
-.c.o:
-	$(CC) $(CFLAGS) $< -o build/$@
+build/%.o: src/%.c
+	$(CC) -c -Wall $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o *.exe
+	rm build/*.o
+	rm bin/*.exe

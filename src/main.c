@@ -26,7 +26,7 @@ int main()
                circle.area);
     }
     if (f_name == 2) {
-        complete_triangle_check(&position, &circle);
+        complete_triangle_check(&triangle, &position);
         printf("perimetr = %f, area = %f\n", triangle.perimetr, triangle.area);
     }
     return 0;
